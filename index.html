@@ -1,58 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta name="google-site-verification" content="nLTJCabogFz5TFCGJZ1GMGz18sROBoTAWLbiOty6udk" />
   <meta charset="UTF-8">
   <!-- سطر مهم جداً لجعل الموقع متجاوباً مع الهواتف -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TECH WORLD</title>
+  <title>عالم التكنولوجيا | TECH WORLD</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="loader">Loading...</div>
+<div id="loader">جاري التحميل...</div>
 
-<!-- NAV -->
+<!-- شريط التنقل (NAV) -->
 <nav>
-  <h1 class="logo">TECH WORLD</h1>
+  <h1 class="logo">عالم التكنولوجيا</h1>
   <div class="nav-links">
-    <a href="index.html">Home</a>
-    <!-- تم تعديل الأزرار لتشغيل الفلترة مباشرة عند الضغط -->
-    <a href="#" onclick="filterPosts('phones')">Phones</a>
-    <a href="#" onclick="filterPosts('laptops')">Laptops</a>
-    <a href="#" onclick="filterPosts('ai')">AI</a>
+    <a href="index.html">الرئيسية</a>
+    <!-- تم تعريب الأزرار لتشغيل الفلترة مباشرة عند الضغط -->
+    <a href="#" onclick="filterPosts('phones')">الهواتف</a>
+    <a href="#" onclick="filterPosts('laptops')">اللابتوبات</a>
+    <a href="#" onclick="filterPosts('ai')">الذكاء الاصطناعي</a>
   </div>
-  <input type="text" placeholder="Search..." class="search">
+  <input type="text" placeholder="ابحث هنا..." class="search">
 </nav>
 
-<!-- HERO -->
+<!-- القسم الرئيسي (HERO) -->
 <section class="hero">
-  <h2>Latest Tech News & Electronics</h2>
+  <h2>أحدث أخبار التكنولوجيا والإلكترونيات</h2>
   <p>أفضل الهواتف واللابتوبات وأخبار الذكاء الاصطناعي</p>
-  <button>Explore Now</button>
+  <button>استكشف الآن</button>
 </section>
 
-<!-- FEATURED -->
+<!-- المقالة المميزة (FEATURED) -->
 <section class="featured">
   <div class="featured-card" id="featured"></div>
 </section>
 
-<!-- CATEGORIES -->
+<!-- الأقسام والتصنيفات (CATEGORIES) -->
 <section class="categories">
-  <button onclick="filterPosts('all')">All</button>
-  <button onclick="filterPosts('phones')">Phones</button>
-  <button onclick="filterPosts('laptops')">Laptops</button>
-  <button onclick="filterPosts('ai')">AI</button>
-  <button onclick="filterPosts('gaming')">Gaming</button>
+  <button onclick="filterPosts('all')">الكل</button>
+  <button onclick="filterPosts('phones')">الهواتف</button>
+  <button onclick="filterPosts('laptops')">اللابتوبات</button>
+  <button onclick="filterPosts('ai')">الذكاء الاصطناعي</button>
+  <button onclick="filterPosts('gaming')">الألعاب (Gaming)</button>
 </section>
 
-<!-- POSTS (تُترك فارغة ليملأها السكريبت تلقائياً) -->
+<!-- المقالات (تُترك فارغة ليملأها السكريبت تلقائياً) -->
 <section class="posts"></section>
 
-<!-- FOOTER -->
+<!-- أسفل الصفحة (FOOTER) -->
 <footer>
-  <h3>TECH WORLD</h3>
-  <p>All Rights Reserved © 2026</p>
+  <h3>عالم التكنولوجيا</h3>
+  <p>جميع الحقوق محفوظة © 2026</p>
 </footer>
 
 <script src="script.js"></script>
