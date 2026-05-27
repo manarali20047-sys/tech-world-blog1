@@ -1,238 +1,81 @@
 let allPosts = [];
-
 let likes = JSON.parse(localStorage.getItem("likes")) || {};
-
 let views = JSON.parse(localStorage.getItem("views")) || {};
 
-
-// =========================
-// تحميل البيانات
-// =========================
 fetch("posts.json")
   .then(res => res.json())
   .then(data => {
-
     allPosts = data;
-
     displayPosts(allPosts);
-
     showFeatured(allPosts);
-
+    document.getElementById("loader").style.display = "none";
+  })
+  .catch(err => {
+    console.error("Error loading JSON:", err);
+    document.getElementById("loader").style.display = "none";
   });
 
-
-// =========================
-// عرض البوستات
-// =========================
 function displayPosts(posts){
-
     let container = document.querySelector(".posts");
-
+    if(!container) return; 
     container.innerHTML = "";
 
-    posts.forEach((post, index) => {
-
+    posts.forEach((post) => {
+        let actualIndex = allPosts.indexOf(post); 
         container.innerHTML += `
-
         <div class="post-card" data-category="${post.category}">
-
             <img src="${post.image}" alt="${post.title}">
-
-            <h3>${post.title}</h3>
-
+            <a href="post.html?id=${actualIndex}" style="text-decoration:none; color:inherit;">
+                <h3>${post.title}</h3>
+            </a>
             <p>${post.description}</p>
-
-            <div class="post-info">
-
-                <span class="category-tag">
-                    ${post.category}
-                </span>
-
-                <span class="views">
-                    👁 ${views[index] || 0}
-                </span>
-
+            <div class="post-info" style="display:flex; justify-content:space-between; padding:0 10px; color:#aaa; font-size:14px;">
+                <span class="category-tag">${post.category}</span>
+                <span class="views">👁 ${views[actualIndex] || 0}</span>
             </div>
-
             <div class="actions">
-
-                <button onclick="likePost(${index})" class="like-btn">
-
-                    ❤️ 
-                    <span id="like-${index}">
-                        ${likes[index] || 0}
-                    </span>
-
+                <button onclick="likePost(${actualIndex})" class="like-btn">
+                    ❤️ <span id="like-${actualIndex}">${likes[actualIndex] || 0}</span>
                 </button>
-
-                <button onclick="openPost(${index})" class="read-btn">
+                <a href="post.html?id=${actualIndex}" class="read-btn" style="text-decoration:none;">
                     Read More
-                </button>
-
+                </a>
             </div>
-
         </div>
-
         `;
     });
-
 }
 
-
-// =========================
-// فتح المقال
-// =========================
-function openPost(id){
-
-    addView(id);
-
-    window.location.href = "post.html?id=" + id;
-
-}
-
-
-// =========================
-// زيادة المشاهدات
-// =========================
-function addView(id){
-
-    if(!views[id]){
-
-        views[id] = 0;
-
-    }
-
-    views[id]++;
-
-    localStorage.setItem("views", JSON.stringify(views));
-
-}
-
-
-// =========================
-// اللايك
-// =========================
 function likePost(id){
-
-    if(!likes[id]){
-
-        likes[id] = 0;
-
-    }
-
+    if(!likes[id]) likes[id] = 0;
     likes[id]++;
-
     localStorage.setItem("likes", JSON.stringify(likes));
-
-    document.getElementById("like-" + id).innerText = likes[id];
-
+    let likeSpan = document.getElementById("like-" + id);
+    if(likeSpan) likeSpan.innerText = likes[id];
 }
 
-
-// =========================
-// فلترة البوستات
-// =========================
 function filterPosts(category){
-
     if(category === "all"){
-
         displayPosts(allPosts);
-
     } else {
-
-        let filtered = allPosts.filter(post =>
-            post.category === category
-        );
-
+        let filtered = allPosts.filter(post => post.category.toLowerCase() === category.toLowerCase());
         displayPosts(filtered);
-
     }
-
 }
 
-
-// =========================
-// البحث
-// =========================
-document.querySelector(".search")
-.addEventListener("input", function(e){
-
-    let value = e.target.value.toLowerCase();
-
-    let filtered = allPosts.filter(post =>
-
-        post.title.toLowerCase().includes(value)
-
-        ||
-
-        post.description.toLowerCase().includes(value)
-
-    );
-
-    displayPosts(filtered);
-
-});
-
-
-// =========================
-// Featured Article
-// =========================
 function showFeatured(posts){
-
     let featured = posts[0];
-
     let container = document.getElementById("featured");
-
-    if(!container) return;
-
+    if(!container || !featured) return;
     container.innerHTML = `
-
         <img src="${featured.image}">
-
-        <div class="featured-content">
-
+        <div class="featured-content" style="padding: 20px;">
             <h2>🔥 Featured Article</h2>
-
             <h3>${featured.title}</h3>
-
             <p>${featured.description}</p>
-
-            <button onclick="openPost(0)">
+            <a href="post.html?id=0" style="padding:10px 20px; background:#00ff88; border:none; border-radius:10px; text-decoration:none; color:black; display:inline-block;">
                 Read Full Article
-            </button>
-
+            </a>
         </div>
-
     `;
-
 }
-
-
-// =========================
-// Dark / Light Mode
-// =========================
-document.addEventListener("DOMContentLoaded", function(){
-
-    let button = document.getElementById("toggleMode");
-
-    if(button){
-
-        button.addEventListener("click", function(){
-
-            document.body.classList.toggle("light");
-
-            if(document.body.classList.contains("light")){
-
-                button.innerText = "☀️";
-
-            } else {
-
-                button.innerText = "🌙";
-
-            }
-
-        });
-
-    }
-
-});
