@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا - عالم التكنولوجيا</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.8; margin: 40px; color: #333; background-color: #f9f9f9; }
+        .container { max-width: 600px; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: 0 auto; }
+        h1 { color: #e11d48; border-bottom: 2px solid #e11d48; padding-bottom: 10px; text-align: center; }
+        .back-btn { display: inline-block; margin-bottom: 20px; color: #e11d48; text-decoration: none; font-weight: bold; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="email"], textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        textarea { height: 120px; resize: none; }
+        button { background-color: #e11d48; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; }
+        button:hover { background-color: #be123c; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← العودة للرئيسية</a>
+        <h1>اتصل بنا</h1>
+        <p style="text-align: center; color: #666;">يسعدنا دائماً استقبال آرائكم واستفساراتكم. يمكنك مراسلتنا مباشرة عبر النموذج التالي:</p>
+        
+        <!-- استبدلي EMAIL_HERE بإيميلكِ الحقيقي لتصلكِ الرسائل عليه -->
+        <form action="https://formspree.io/f/manarali20047@gmail.com" method="POST">
+            <div class="form-group">
+                <label for="name">الاسم:</label>
+                <input type="text" id="name" name="name" required placeholder="اكتب اسمك هنا">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" name="_replyto" required placeholder="بريدك الإلكتروني">
+            </div>
+            
+            <div class="form-group">
+                <label for="message">رسالتك:</label>
+                <textarea id="message" name="message" required placeholder="اكتب رسالتك أو استفسارك هنا..."></textarea>
+            </div>
+            
+            <button type="submit">إرسال الرسالة</button>
+        </form>
+    </div>
+</body>
+</html>
