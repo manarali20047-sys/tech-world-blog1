@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manarali20047-sys.github.io/tech-world-blog1/sitemap.xml
