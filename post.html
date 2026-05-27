@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المقال التقني</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* تحسينات مخصصة لصفحة المقال لتبدو احترافية ومريحة للقراءة */
+    .post-content {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        line-height: 1.8;
+        font-size: 18px;
+    }
+    .post-paragraph {
+        margin-bottom: 20px;
+        text-align: justify;
+        color: #ddd;
+    }
+    /* إذا كان الوضع الفاتح نشطاً */
+    body.light .post-paragraph {
+        color: #333;
+    }
+    .post-img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 15px;
+        margin-bottom: 25px;
+    }
+    .back-btn {
+        background: #00ff88;
+        color: black;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: 0.3s;
+        display: inline-block;
+        margin-top: 20px;
+    }
+    .back-btn:hover {
+        background: #00cc6a;
+    }
+  </style>
+</head>
+<body>
+
+<header class="post-header" style="text-align: center; padding: 40px 20px; background: #111;">
+  <h1 id="title" style="color: #00ff88; margin-bottom: 10px;"></h1>
+  <p class="tag" style="color: #aaa; font-size: 14px;">TECH WORLD ARTICLE</p>
+</header>
+
+<div class="post-content">
+
+  <img id="image" class="post-img" src="" alt="Post Image">
+
+  <div id="text-container"></div>
+
+  <button onclick="history.back()" class="back-btn">⬅ العودة للرئيسية</button>
+
+</div>
+
+<script>
+// كود جلب البيانات المطور وعرض المحتوى الطويل في فقرات منظمّة
+let allPosts = [];
+
+fetch("posts.json")
+.then(res => res.json())
+.then(data => {
+    allPosts = data;
+
+    let params = new URLSearchParams(window.location.search);
+    let id = params.get("id");
+
+    // التأكد من أن الـ ID متاح وصحيح
+    if (id !== null && allPosts[id]) {
+        let post = allPosts[id];
+
+        // عرض العنوان والصورة
+        document.getElementById("title").innerText = post.title;
+        document.getElementById("image").src = post.image;
+
+        // عرض المحتوى الطويل على شكل فقرات منفصلة ومريحة لجوجل
+        let textContainer = document.getElementById("text-container");
+        textContainer.innerHTML = ""; // تفريغ الحاوية
+
+        post.content.forEach(paragraphText => {
+            let p = document.createElement("p");
+            p.className = "post-paragraph";
+            p.innerText = paragraphText;
+            textContainer.appendChild(p);
+        });
+
+        // تفعيل الوضع الفاتح تلقائياً إذا كان مفعلاً في الصفحة الرئيسية
+        if(document.body.classList.contains("light") || localStorage.getItem("theme") === "light") {
+            document.body.classList.add("light");
+        }
+    } else {
+        document.getElementById("text-container").innerHTML = "<p style='text-align:center; color:red;'>المقال غير موجود أو تم حذفه!</p>";
+    }
+})
+.catch(err => {
+    console.error("Error fetching post data:", err);
+});
+</script>
+
+</body>
+</html>
