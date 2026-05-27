@@ -6,6 +6,40 @@
   <title>المقال التقني</title>
   <link rel="stylesheet" href="style.css">
   <style>
+  /* وضع افتراضي ذكي للخطوط في الصفحة */
+body {
+    background: #0a0a0a; /* خلفية داكنة افتراضية */
+    color: #ffffff;      /* نص أبيض افتراضي */
+    transition: background 0.3s, color 0.3s;
+}
+
+.post-paragraph {
+    margin-bottom: 20px;
+    text-align: justify;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #e0e0e0; /* لون رمادي فاتح جداً وواضح تماماً على الخلفية السوداء */
+}
+
+/* --- الحل السحري للوضع الفاتح (Light Mode) --- */
+body.light {
+    background: #ffffff !important;
+    color: #111111 !important;
+}
+
+body.light .post-paragraph {
+    color: #222222 !important; /* لون أسود داكن وصريح ليكون واضحاً جداً على الخلفية البيضاء */
+    font-weight: 500;          /* يعطي سماكة خفيفة للخط لتسهيل القراءة */
+}
+
+/* تعديل خلفية الهيدر في الصفحة لتتناسب مع الوضعين */
+body.light .post-header {
+    background: #f1f1f1 !important;
+}
+body.light .post-header h1 {
+    color: #00aa5b !important; /* لون أخضر غامق ومريح للعين على الخلفية الفاتحة */
+}
+
     /* تحسينات مخصصة لصفحة المقال لتبدو احترافية ومريحة للقراءة */
     .post-content {
         max-width: 800px;
@@ -92,7 +126,7 @@ fetch("posts.json")
         post.content.forEach(paragraphText => {
             let p = document.createElement("p");
             p.className = "post-paragraph";
-            p.innerText = paragraphText;
+            p.innerHTML = paragraphText;
             textContainer.appendChild(p);
         });
 
