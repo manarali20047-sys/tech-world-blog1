@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta name="google-site-verification" content="nLTJCabogFz5TFCGJZ1GMGz18sROBoTAWLbiOty6udk" />
   <meta charset="UTF-8">
+  <!-- سطر مهم جداً لجعل الموقع متجاوباً مع الهواتف -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TECH WORLD</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
 <div id="loader">Loading...</div>
+
 <!-- NAV -->
 <nav>
   <h1 class="logo">TECH WORLD</h1>
-
-  <div>
+  <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="#">Phones</a>
-    <a href="#">Laptops</a>
-    <a href="#">AI</a>
+    <!-- تم تعديل الأزرار لتشغيل الفلترة مباشرة عند الضغط -->
+    <a href="#" onclick="filterPosts('phones')">Phones</a>
+    <a href="#" onclick="filterPosts('laptops')">Laptops</a>
+    <a href="#" onclick="filterPosts('ai')">AI</a>
   </div>
-
   <input type="text" placeholder="Search..." class="search">
 </nav>
 
@@ -29,11 +31,12 @@
   <p>أفضل الهواتف واللابتوبات وأخبار الذكاء الاصطناعي</p>
   <button>Explore Now</button>
 </section>
-<section class="featured">
-  <h2>🔥 Featured Article</h2>
 
+<!-- FEATURED -->
+<section class="featured">
   <div class="featured-card" id="featured"></div>
 </section>
+
 <!-- CATEGORIES -->
 <section class="categories">
   <button onclick="filterPosts('all')">All</button>
@@ -43,31 +46,8 @@
   <button onclick="filterPosts('gaming')">Gaming</button>
 </section>
 
-<!-- POSTS -->
-<section class="posts">
-
-  <div class="post-card" data-category="phones">
-    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
-    <h3>Best Smartphone 2026</h3>
-    <p>Latest phones comparison...</p>
-    <a href="post1.html"><button>Read More</button></a>
-  </div>
-
-  <div class="post-card" data-category="ai">
-    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
-    <h3>AI Revolution</h3>
-    <p>How AI is changing everything...</p>
-    <a href="#"><button>Read More</button></a>
-  </div>
-
-  <div class="post-card" data-category="laptops">
-    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853">
-    <h3>Best Laptop for Students</h3>
-    <p>Top laptops for study and work...</p>
-    <a href="#"><button>Read More</button></a>
-  </div>
-
-</section>
+<!-- POSTS (تُترك فارغة ليملأها السكريبت تلقائياً) -->
+<section class="posts"></section>
 
 <!-- FOOTER -->
 <footer>
@@ -77,8 +57,4 @@
 
 <script src="script.js"></script>
 </body>
-
 </html>
-<button onclick="window.location.href='index.html'" class="back-btn">
-  ⬅ Back to Home
-</button>
